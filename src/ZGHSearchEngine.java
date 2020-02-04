@@ -14,5 +14,6 @@ public class ZGHSearchEngine {
             Processor.getInstance().processQuery(query);
             Processor.getInstance().printResults();
         }
+
     }
 }

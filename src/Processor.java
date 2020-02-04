@@ -30,7 +30,7 @@ public class Processor {
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
-//        proximityFilter(wordsToFind);
+        proximityFilter(wordsToFind);
         sortedResults = new ArrayList<>(results.values());
         sortedResults.sort(Comparator.comparingInt(Result::getScore).reversed());
 //        for (int i = 0; i < wordsToFind.length; i++) {

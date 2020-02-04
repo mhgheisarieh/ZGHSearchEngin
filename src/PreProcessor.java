@@ -34,6 +34,7 @@ public class PreProcessor {
         String[] words = doc.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
         int indexOfWord = 0;
         for (String word : words) {
+
             if (invertedIndex.get(word) == null) {
                 DetailsOfWord indexes = new DetailsOfWord(word);
                 indexes.addWordToDocIndex(indexOfDoc, 1);
@@ -41,6 +42,7 @@ public class PreProcessor {
                 indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
             } else {
                 invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
+                invertedIndex.get(word).addIndexOfWordInDoc(indexOfDoc,indexOfWord);
             }
             indexOfWord++;
         }
