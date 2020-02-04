@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -135,36 +134,27 @@ class PreProcessor {
     }
 }
 
-public class ZGHSearchEngine {
+class Processor {
+    // each doc which has all the words in query has a result
+    private HashMap<Integer, Result> results; //HashMap to link doc indexes with results
+    private static Processor instance;
 
-    public static final String FILE_NAME = "English.csv";
-
-    public static void main(String[] args) {
-        CSVFileReader.getInstance().readCSVFile(FILE_NAME);
-        PreProcessor.getInstance().preProcessDocs(CSVFileReader.getInstance().getDocuments());
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String query = scanner.nextLine();
-            processQuery(query);
-        }
+    private Processor() {
+        results = new HashMap<>();
     }
 
-    private static void processQuery(String query) {
+    public static Processor getInstance() {
+        if (instance == null) {
+            instance = new Processor();
+        }
+        return instance;
+    }
+
+    public void processQuery(String query) {
         System.out.println("ZGH Search Engine\nSearch Results:");
-        String[] stringsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
-        HashMap<Integer, Result> results = new HashMap<>(); //HashMap to link doc indexes with results
-        ArrayList<Integer> foundDocIndexes = null;
-        for (int i = 0; i < stringsToFind.length; i++) {
-            if (foundDocIndexes == null && PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null)
-                foundDocIndexes = new ArrayList<>(PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]).getNumOfWordInDocs().keySet());
-            else if (foundDocIndexes != null && PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null)
-                foundDocIndexes.retainAll(PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]).getNumOfWordInDocs().keySet());
-        }
-        System.out.println(foundDocIndexes);
-        for (int i = 0; i < foundDocIndexes.size(); i++) {
-            Result result = new Result(foundDocIndexes.get(i), 0);
-            results.put(foundDocIndexes.get(i), result);
-        }
+        String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
+
+        findAllMatches(wordsToFind);
 
 //        for (int i = 0; i < stringsToFind.length; i++) {
 //            Result result = new Result();
@@ -181,10 +171,10 @@ public class ZGHSearchEngine {
 //                }
 //            }
 //        }
-        for (int i = 0; i < stringsToFind.length; i++) {
+        for (int i = 0; i < wordsToFind.length; i++) {
             HashMap<Integer, Result> results_of_now_word = new HashMap<>(); //HashMap to link doc indexes with results
-            if (PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null) {
-                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]);
+            if (PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null) {
+                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]);
                 for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
                     if (results.get(entry.getKey()) == null) {
                         Result result = new Result(entry.getKey(), entry.getValue());
@@ -208,6 +198,37 @@ public class ZGHSearchEngine {
         }
 //        printResults(documents, indexes);
     }
+
+    private void findAllMatches(String[] wordsToFind) {
+        ArrayList<Integer> foundDocIndexes = null;
+        for (int i = 0; i < wordsToFind.length; i++) {
+            if (foundDocIndexes == null && PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null)
+                foundDocIndexes = new ArrayList<>(PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]).getNumOfWordInDocs().keySet());
+            else if (foundDocIndexes != null && PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null)
+                foundDocIndexes.retainAll(PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]).getNumOfWordInDocs().keySet());
+        }
+        System.out.println(foundDocIndexes);
+        for (int i = 0; i < foundDocIndexes.size(); i++) {
+            Result result = new Result(foundDocIndexes.get(i), 0);
+            results.put(foundDocIndexes.get(i), result);
+        }
+    }
+}
+
+public class ZGHSearchEngine {
+
+    public static final String FILE_NAME = "English.csv";
+
+    public static void main(String[] args) {
+        CSVFileReader.getInstance().readCSVFile(FILE_NAME);
+        PreProcessor.getInstance().preProcessDocs(CSVFileReader.getInstance().getDocuments());
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String query = scanner.nextLine();
+            Processor.getInstance().processQuery(query);
+        }
+    }
+
 
     private static void printResults(ArrayList<String> documents, ArrayList<Integer> indexes) {
         ArrayList<String> foundDocuments = new ArrayList<>();
