@@ -7,18 +7,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
+//contains a word and indexes of documents which has the word as key and number of rematches in values
 class InvertedIndexWord {
     private String word;
     private HashMap<Integer, Integer> numOfWordInDocs; //A hash map to link indexes and numOfWords in doc
+    //todo for multiple occurrences in one doc can add ArrayList of Integer to save indexes
+    private HashMap<Integer, Integer> indexInDoc; // key: index of doc ; value: index of word in doc
 
     public InvertedIndexWord(String word) {
         this.word = word;
         this.numOfWordInDocs = new HashMap<>();
+        this.indexInDoc = new HashMap<>();
     }
 
     public void addWordToDocIndex(int indexOfDoc, int number) {
         this.numOfWordInDocs.merge(indexOfDoc, number, Integer::sum);
+    }
+
+    public void addIndexOfWordInDoc(int indexOfDoc, int indexOfWord) {
+        this.indexInDoc.put(indexOfDoc, indexOfWord);
     }
 
     public HashMap<Integer, Integer> getNumOfWordInDocs() {
@@ -26,7 +33,7 @@ class InvertedIndexWord {
     }
 }
 
-
+//each founded document as a Result; index: index of document; score : score of document
 class Result {
     private int index;
     private int score;
@@ -160,14 +167,17 @@ public class InvertedIndexFinder {
 
     private static void processLine(HashMap<String, InvertedIndexWord> invertedIndex, String line, int indexOfDoc) {
         String[] words = line.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
+        int indexOfWord = 0;
         for (String word : words) {
             if (invertedIndex.get(word) == null) {
                 InvertedIndexWord indexes = new InvertedIndexWord(word);
                 indexes.addWordToDocIndex(indexOfDoc, 1);
                 invertedIndex.put(word, indexes);
+                indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
             } else {
                 invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
             }
+            indexOfWord++;
         }
     }
 }
