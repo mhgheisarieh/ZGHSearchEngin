@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4258a686-02a2-4824-a369-e26e0bd4afe8" name="Default Changelist" comment="" />
+    <list default="true" id="4258a686-02a2-4824-a369-e26e0bd4afe8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InvertedIndexFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InvertedIndexFinder.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,13 +18,19 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
   <component name="ProjectId" id="1XHr3KJjlxJXdzqHuj1iWsn5j4O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -82,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580713661383</updated>
-      <workItem from="1580713666489" duration="21106000" />
+      <workItem from="1580713666489" duration="22675000" />
     </task>
     <servers />
   </component>
@@ -98,22 +108,30 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="134" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1580736733891" />
-    <state width="1493" height="214" key="GridCell.Tab.0.bottom" timestamp="1580739192501">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1580797848250">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580739192501" />
-    <state width="1493" height="214" key="GridCell.Tab.0.center" timestamp="1580739192501">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580797848250" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1580797848248">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1580739192501" />
-    <state width="1493" height="214" key="GridCell.Tab.0.left" timestamp="1580739192501">
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1580797848248" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1580797848247">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1580739192501" />
-    <state width="1493" height="214" key="GridCell.Tab.0.right" timestamp="1580739192501">
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1580797848247" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1580797848249">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1580739192501" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1580797848249" />
+    <state x="147" y="72" key="MergeDialog" timestamp="1580799667148">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="147" y="72" key="MergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1580799667148" />
+    <state x="481" y="134" key="MultipleFileMergeDialog" timestamp="1580799667157">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="481" y="134" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1580799667157" />
     <state x="584" y="352" key="ReplaceDuplicatesPrompt" timestamp="1580726054370">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -126,6 +144,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="78" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.834@0.0.1536.834" timestamp="1580724017978" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580799632396">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1580799632396" />
     <state x="540" y="121" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580733197378">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

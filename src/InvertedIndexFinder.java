@@ -66,8 +66,6 @@ public class InvertedIndexFinder {
 
     public static void main(String[] args) {
         ArrayList<String> documents = new ArrayList<>();
-//        HashMap<String, ArrayList<Integer>> invertedIndex;
-//        invertedIndex = new HashMap<>();
         HashMap<String, InvertedIndexWord> invertedIndex = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader("English.csv"))) {
             String line;
@@ -88,8 +86,6 @@ public class InvertedIndexFinder {
             String strToFind = scanner.nextLine();
             processQuery(documents, invertedIndex, strToFind);
         }
-//        processAndQuery(documents, invertedIndex, strToFind);
-//        processOrQuery(documents, invertedIndex, strToFind);
     }
 
     private static void processQuery(ArrayList<String> documents, HashMap<String, InvertedIndexWord> invertedIndex, String strToFind) {
@@ -102,6 +98,8 @@ public class InvertedIndexFinder {
                 foundDocIndexes = new ArrayList<>(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
             else if (foundDocIndexes != null && invertedIndex.get(stringsToFind[i]) != null)
                 foundDocIndexes.retainAll(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
+        //            Result result = new Result(i , 0);
+
         }
         System.out.println(foundDocIndexes);
 //        for (int i = 0; i < stringsToFind.length; i++) {
