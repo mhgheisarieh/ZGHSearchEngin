@@ -106,7 +106,7 @@ class PreProcessor {
         return instance;
     }
 
-    public HashMap<String, DetailOfWord> getInvertedIndex() {
+    public HashMap<String, DetailOfWord> getDetailOfWords() {
         return invertedIndex;
     }
 
@@ -154,8 +154,9 @@ class Processor {
     public void processQuery(String query) {
         System.out.println("ZGH Search Engine\nSearch Results:");
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
-
         findAllMatches(wordsToFind);
+        setResultsScore(wordsToFind);
+        System.out.println(results);
 
 //        for (int i = 0; i < stringsToFind.length; i++) {
 //            Result result = new Result();
@@ -174,8 +175,8 @@ class Processor {
 //        }
         for (int i = 0; i < wordsToFind.length; i++) {
             HashMap<Integer, Result> results_of_now_word = new HashMap<>(); //HashMap to link doc indexes with results
-            if (PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null) {
-                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]);
+            if (PreProcessor.getInstance().getDetailOfWords().get(wordsToFind[i]) != null) {
+                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getDetailOfWords().get(wordsToFind[i]);
                 for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
                     if (results.get(entry.getKey()) == null) {
                         Result result = new Result(entry.getKey(), entry.getValue());
@@ -200,18 +201,28 @@ class Processor {
 //        printResults(documents, indexes);
     }
 
+    private void setResultsScore(String[] wordsToFind) {
+        for (String word : wordsToFind) {
+            for (Integer docIndex : results.keySet()) {
+                PreProcessor.getInstance().getDetailOfWords().get(word);
+                int score = PreProcessor.getInstance().getDetailOfWords().get(word).getNumOfWordInDocs().get(docIndex);
+                results.get(docIndex).changeScore(score);
+            }
+        }
+    }
+
     private void findAllMatches(String[] wordsToFind) {
         ArrayList<Integer> foundDocIndexes = null;
-        for (int i = 0; i < wordsToFind.length; i++) {
-            if (foundDocIndexes == null && PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null)
-                foundDocIndexes = new ArrayList<>(PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]).getNumOfWordInDocs().keySet());
-            else if (foundDocIndexes != null && PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]) != null)
-                foundDocIndexes.retainAll(PreProcessor.getInstance().getInvertedIndex().get(wordsToFind[i]).getNumOfWordInDocs().keySet());
+        for (String s : wordsToFind) {
+            if (foundDocIndexes == null && PreProcessor.getInstance().getDetailOfWords().get(s) != null)
+                foundDocIndexes = new ArrayList<>(PreProcessor.getInstance().getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
+            else if (foundDocIndexes != null && PreProcessor.getInstance().getDetailOfWords().get(s) != null)
+                foundDocIndexes.retainAll(PreProcessor.getInstance().getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
         }
-        System.out.println(foundDocIndexes);
-        for (int i = 0; i < foundDocIndexes.size(); i++) {
-            Result result = new Result(foundDocIndexes.get(i), 0);
-            results.put(foundDocIndexes.get(i), result);
+        if (foundDocIndexes == null)
+            return;
+        for (Integer foundDocIndex : foundDocIndexes) {
+            results.put(foundDocIndex, new Result(foundDocIndex, 0));
         }
     }
 }
