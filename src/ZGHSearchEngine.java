@@ -8,13 +8,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 //contains a word and indexes of documents which has the word as key and number of rematches in values
-class InvertedIndexWord {
+class DetailOfWord {
     private String word;
     private HashMap<Integer, Integer> numOfWordInDocs; //A hash map to link indexes and numOfWords in doc
     //todo for multiple occurrences in one doc can add ArrayList of Integer to save indexes
     private HashMap<Integer, Integer> indexInDoc; // key: index of doc ; value: index of word in doc
 
-    public InvertedIndexWord(String word) {
+    public DetailOfWord(String word) {
         this.word = word;
         this.numOfWordInDocs = new HashMap<>();
         this.indexInDoc = new HashMap<>();
@@ -56,63 +56,116 @@ class Result {
     }
 }
 
+class CSVFileReader {
+    private static CSVFileReader instance;
+    private ArrayList<String> documents = new ArrayList<>();
 
-class IndexOfWord {
-    private int indexOfDoc;
-    private int indexInDoc;
-
-    IndexOfWord(int indexOfDoc, int indexInDoc) {
-        this.indexOfDoc = indexOfDoc;
-        this.indexInDoc = indexInDoc;
+    public ArrayList<String> getDocuments() {
+        return documents;
     }
 
 
-}
+    public static CSVFileReader getInstance() {
+        if (instance == null) {
+            instance = new CSVFileReader();
+        }
+        return instance;
+    }
 
-public class InvertedIndexFinder {
-
-    public static void main(String[] args) {
-        ArrayList<String> documents = new ArrayList<>();
-        HashMap<String, InvertedIndexWord> invertedIndex = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("English.csv"))) {
-            String line;
-            int index = 1;
-            while ((line = br.readLine()) != null) {
-                //Each line in a document
-                line = line.split("\",\"")[1];
-                line = line.substring(0, line.length() - 1);
-                documents.add(line);
-                processLine(invertedIndex, line, index);
-                index++;
+    public void readCSVFile(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String doc;
+            int indexOfDoc = 1;
+            while ((doc = br.readLine()) != null) {
+                //Each line is a document
+                doc = doc.split("\",\"")[1];
+                doc = doc.substring(0, doc.length() - 1);
+                documents.add(doc);
+                indexOfDoc++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String strToFind = scanner.nextLine();
-            processQuery(documents, invertedIndex, strToFind);
+    }
+}
+
+class PreProcessor {
+
+    private static PreProcessor instance;
+
+    private HashMap<String, DetailOfWord> invertedIndex;
+
+    private PreProcessor() {
+        invertedIndex = new HashMap<>();
+    }
+
+    public static PreProcessor getInstance() {
+        if (instance == null) {
+            instance = new PreProcessor();
+        }
+        return instance;
+    }
+
+    public HashMap<String, DetailOfWord> getInvertedIndex() {
+        return invertedIndex;
+    }
+
+    public void preProcessDocs(ArrayList<String> docs) {
+        int indexOfDoc = 0;
+        for (String doc : docs) {
+            preProcessDoc(doc, indexOfDoc);
+            indexOfDoc++;
         }
     }
 
-    private static void processQuery(ArrayList<String> documents, HashMap<String, InvertedIndexWord> invertedIndex, String strToFind) {
+    private void preProcessDoc(String doc, int indexOfDoc) {
+        String[] words = doc.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
+        int indexOfWord = 0;
+        for (String word : words) {
+            if (invertedIndex.get(word) == null) {
+                DetailOfWord indexes = new DetailOfWord(word);
+                indexes.addWordToDocIndex(indexOfDoc, 1);
+                invertedIndex.put(word, indexes);
+                indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
+            } else {
+                invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
+            }
+            indexOfWord++;
+        }
+    }
+}
+
+public class ZGHSearchEngine {
+
+    public static final String FILE_NAME = "English.csv";
+
+    public static void main(String[] args) {
+        CSVFileReader.getInstance().readCSVFile(FILE_NAME);
+        PreProcessor.getInstance().preProcessDocs(CSVFileReader.getInstance().getDocuments());
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String query = scanner.nextLine();
+            processQuery(query);
+        }
+    }
+
+    private static void processQuery(String query) {
         System.out.println("ZGH Search Engine\nSearch Results:");
-        String[] stringsToFind = strToFind.split("[\\s.,()/\"#;'\\\\\\-:$]+");
+        String[] stringsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         HashMap<Integer, Result> results = new HashMap<>(); //HashMap to link doc indexes with results
         ArrayList<Integer> foundDocIndexes = null;
         for (int i = 0; i < stringsToFind.length; i++) {
-            if (foundDocIndexes == null && invertedIndex.get(stringsToFind[i]) != null)
-                foundDocIndexes = new ArrayList<>(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
-            else if (foundDocIndexes != null && invertedIndex.get(stringsToFind[i]) != null)
-                foundDocIndexes.retainAll(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
+            if (foundDocIndexes == null && PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null)
+                foundDocIndexes = new ArrayList<>(PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]).getNumOfWordInDocs().keySet());
+            else if (foundDocIndexes != null && PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null)
+                foundDocIndexes.retainAll(PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]).getNumOfWordInDocs().keySet());
         }
         System.out.println(foundDocIndexes);
-        System.out.println(invertedIndex);
         for (int i = 0; i < foundDocIndexes.size(); i++) {
-            Result result = new Result(foundDocIndexes.get(i) , 0);
-            results.put(foundDocIndexes.get(i) , result);
+            Result result = new Result(foundDocIndexes.get(i), 0);
+            results.put(foundDocIndexes.get(i), result);
         }
-        
+
 //        for (int i = 0; i < stringsToFind.length; i++) {
 //            Result result = new Result();
 //        }
@@ -130,8 +183,8 @@ public class InvertedIndexFinder {
 //        }
         for (int i = 0; i < stringsToFind.length; i++) {
             HashMap<Integer, Result> results_of_now_word = new HashMap<>(); //HashMap to link doc indexes with results
-            if (invertedIndex.get(stringsToFind[i]) != null) {
-                InvertedIndexWord invertedIndexWord = invertedIndex.get(stringsToFind[i]);
+            if (PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]) != null) {
+                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getInvertedIndex().get(stringsToFind[i]);
                 for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
                     if (results.get(entry.getKey()) == null) {
                         Result result = new Result(entry.getKey(), entry.getValue());
@@ -169,19 +222,5 @@ public class InvertedIndexFinder {
         System.out.println(indexes);
     }
 
-    private static void processLine(HashMap<String, InvertedIndexWord> invertedIndex, String line, int indexOfDoc) {
-        String[] words = line.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
-        int indexOfWord = 0;
-        for (String word : words) {
-            if (invertedIndex.get(word) == null) {
-                InvertedIndexWord indexes = new InvertedIndexWord(word);
-                indexes.addWordToDocIndex(indexOfDoc, 1);
-                invertedIndex.put(word, indexes);
-                indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
-            } else {
-                invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
-            }
-            indexOfWord++;
-        }
-    }
+
 }
