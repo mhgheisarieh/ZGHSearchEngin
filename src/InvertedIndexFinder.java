@@ -105,10 +105,14 @@ public class InvertedIndexFinder {
                 foundDocIndexes = new ArrayList<>(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
             else if (foundDocIndexes != null && invertedIndex.get(stringsToFind[i]) != null)
                 foundDocIndexes.retainAll(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
-        //            Result result = new Result(i , 0);
-
         }
         System.out.println(foundDocIndexes);
+        System.out.println(invertedIndex);
+        for (int i = 0; i < foundDocIndexes.size(); i++) {
+            Result result = new Result(foundDocIndexes.get(i) , 0);
+            results.put(foundDocIndexes.get(i) , result);
+        }
+        
 //        for (int i = 0; i < stringsToFind.length; i++) {
 //            Result result = new Result();
 //        }
