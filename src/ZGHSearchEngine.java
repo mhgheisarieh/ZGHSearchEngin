@@ -1,6 +1,3 @@
-
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,6 +26,10 @@ class DetailOfWord {
 
     public HashMap<Integer, Integer> getNumOfWordInDocs() {
         return numOfWordInDocs;
+    }
+
+    public HashMap<Integer, Integer> getIndexInDoc() {
+        return indexInDoc;
     }
 }
 
@@ -162,6 +163,7 @@ class Processor {
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
+        proximityFilter(wordsToFind);
         sortedResults = new ArrayList<>(results.values());
         sortedResults.sort(Comparator.comparingInt(Result::getScore).reversed());
 //        for (int i = 0; i < wordsToFind.length; i++) {
@@ -176,6 +178,22 @@ class Processor {
 //                indexes.retainAll(invertedIndex.get(stringsToFind[i]));
 //            }
 //        }
+    }
+
+    private void proximityFilter(String[] words) {
+        ArrayList<Integer> toBeRemovedDocs = new ArrayList<>();
+        int maxDistance = 5;
+        for (Integer docIndex : results.keySet()) {
+            for (int i = 0; i < words.length - 1; i++) {
+                int firstIndex = PreProcessor.getInstance().getDetailOfWords().get(words[i]).getIndexInDoc().get(docIndex);
+                int secondIndex = PreProcessor.getInstance().getDetailOfWords().get(words[i + 1]).getIndexInDoc().get(docIndex);
+                if (Math.abs(firstIndex - secondIndex) > maxDistance){
+                    toBeRemovedDocs.add(docIndex);
+                }
+            }
+        }
+        toBeRemovedDocs.forEach(docIndex -> results.remove(docIndex));
+
     }
 
     private void setResultsScore(String[] wordsToFind) {
