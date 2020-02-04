@@ -163,7 +163,7 @@ class Processor {
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
         sortedResults = new ArrayList<>(results.values());
-        sortedResults.sort(Comparator.comparingInt(Result::getScore));
+        sortedResults.sort(Comparator.comparingInt(Result::getScore).reversed());
 //        for (int i = 0; i < wordsToFind.length; i++) {
 //            if (stringsToFind[i].equals("OR")) {
 //                i++;
@@ -204,7 +204,7 @@ class Processor {
     }
 
     public void printResults() {
-        sortedResults.forEach(result -> System.out.println(CSVFileReader.getInstance().getDocuments().get(result.getIndex())));
+        sortedResults.forEach(result -> System.out.println(result.getScore() + "     " + CSVFileReader.getInstance().getDocuments().get(result.getIndex())));
     }
 }
 
