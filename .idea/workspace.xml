@@ -91,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580713661383</updated>
-      <workItem from="1580713666489" duration="28957000" />
+      <workItem from="1580713666489" duration="29777000" />
     </task>
     <task id="LOCAL-00001" summary="second">
       <created>1580799691635</created>
@@ -114,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580804725350</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactoring">
+      <created>1580806524961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580806524961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,26 +145,26 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="241" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1580802397464" />
-    <state x="380" y="13" key="CommitChangelistDialog2" timestamp="1580804723762">
+    <state x="380" y="13" key="CommitChangelistDialog2" timestamp="1580806523899">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="380" y="13" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1580804723762" />
-    <state width="1493" height="265" key="GridCell.Tab.0.bottom" timestamp="1580799852892">
+    <state x="380" y="13" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1580806523899" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1580815104573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
-    <state width="1493" height="265" key="GridCell.Tab.0.center" timestamp="1580799852892">
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580815104573" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1580815104573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
-    <state width="1493" height="265" key="GridCell.Tab.0.left" timestamp="1580799852892">
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1580815104573" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1580815104573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
-    <state width="1493" height="265" key="GridCell.Tab.0.right" timestamp="1580799852892">
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1580815104573" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1580815104573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="265" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1580815104573" />
     <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1580799852892">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -186,10 +193,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="584" y="352" key="ReplaceDuplicatesPrompt/0.0.1536.834@0.0.1536.834" timestamp="1580726054370" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1580804800717">
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1580806532134">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1580804800717" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1580806532134" />
     <state x="465" y="243" key="com.intellij.ide.util.TipDialog" timestamp="1580713666550">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -198,10 +205,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="511" y="78" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.834@0.0.1536.834" timestamp="1580724017978" />
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580806424337">
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580814860348">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1580806424337" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1580814860348" />
     <state x="540" y="121" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580733197378">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -210,10 +217,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="174" width="538" height="495" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1580726051918" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1580726638308">
+    <state x="425" y="189" key="run.anything.popup" timestamp="1580815025154">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1580726638308" />
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1580815025154" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -144,6 +144,10 @@ class Processor {
         results = new HashMap<>();
     }
 
+    public void restartProcessor(){
+        results = new HashMap<>();
+    }
+
     public static Processor getInstance() {
         if (instance == null) {
             instance = new Processor();
@@ -156,37 +160,9 @@ class Processor {
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
-        System.out.println(results);
 
-//        for (int i = 0; i < stringsToFind.length; i++) {
-//            Result result = new Result();
-//        }
-//        if (invertedIndex.get(stringsToFind[0]) != null) {
-//            InvertedIndexWord invertedIndexWord = invertedIndex.get(stringsToFind[0]);
-//            for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
-//                if (results.get(entry.getKey()) == null) {
-//                    Result result = new Result(entry.getKey(), entry.getValue());
-//                    results.put(0, result);
-//                } else {
-//                    Result result = results.get(entry.getKey());
-//                    result.changeScore(entry.getValue());
-//                }
-//            }
-//        }
-        for (int i = 0; i < wordsToFind.length; i++) {
-            HashMap<Integer, Result> results_of_now_word = new HashMap<>(); //HashMap to link doc indexes with results
-            if (PreProcessor.getInstance().getDetailOfWords().get(wordsToFind[i]) != null) {
-                DetailOfWord invertedIndexWord = PreProcessor.getInstance().getDetailOfWords().get(wordsToFind[i]);
-                for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
-                    if (results.get(entry.getKey()) == null) {
-                        Result result = new Result(entry.getKey(), entry.getValue());
-                        results.put(0, result);
-                    } else {
-                        Result result = results.get(entry.getKey());
-                        result.changeScore(entry.getValue());
-                    }
-                }
-            }
+        System.out.println(results);
+//        for (int i = 0; i < wordsToFind.length; i++) {
 //            if (stringsToFind[i].equals("OR")) {
 //                i++;
 //                try {
@@ -197,7 +173,7 @@ class Processor {
 //            if (invertedIndex.get(stringsToFind[i]) != null)
 //                indexes.retainAll(invertedIndex.get(stringsToFind[i]));
 //            }
-        }
+//        }
 //        printResults(documents, indexes);
     }
 
@@ -237,6 +213,7 @@ public class ZGHSearchEngine {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String query = scanner.nextLine();
+            Processor.getInstance().restartProcessor();
             Processor.getInstance().processQuery(query);
         }
     }
