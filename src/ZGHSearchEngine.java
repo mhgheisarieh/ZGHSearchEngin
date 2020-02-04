@@ -1,11 +1,10 @@
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 //contains a word and indexes of documents which has the word as key and number of rematches in values
 class DetailOfWord {
@@ -138,14 +137,17 @@ class PreProcessor {
 class Processor {
     // each doc which has all the words in query has a result
     private HashMap<Integer, Result> results; //HashMap to link doc indexes with results
+    private ArrayList<Result> sortedResults;
     private static Processor instance;
 
     private Processor() {
         results = new HashMap<>();
+        sortedResults = new ArrayList<>();
     }
 
-    public void restartProcessor(){
+    public void restartProcessor() {
         results = new HashMap<>();
+        sortedResults = new ArrayList<>();
     }
 
     public static Processor getInstance() {
@@ -160,8 +162,8 @@ class Processor {
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
-
-        System.out.println(results);
+        sortedResults = new ArrayList<>(results.values());
+        sortedResults.sort(Comparator.comparingInt(Result::getScore));
 //        for (int i = 0; i < wordsToFind.length; i++) {
 //            if (stringsToFind[i].equals("OR")) {
 //                i++;
@@ -169,12 +171,11 @@ class Processor {
 //                    indexes.addAll(invertedIndex.get(stringsToFind[i]));
 //                } catch (Exception ignored) {
 //                }
-////            } else {
+//            } else {
 //            if (invertedIndex.get(stringsToFind[i]) != null)
 //                indexes.retainAll(invertedIndex.get(stringsToFind[i]));
 //            }
 //        }
-//        printResults(documents, indexes);
     }
 
     private void setResultsScore(String[] wordsToFind) {
@@ -201,6 +202,10 @@ class Processor {
             results.put(foundDocIndex, new Result(foundDocIndex, 0));
         }
     }
+
+    public void printResults() {
+        sortedResults.forEach(result -> System.out.println(CSVFileReader.getInstance().getDocuments().get(result.getIndex())));
+    }
 }
 
 public class ZGHSearchEngine {
@@ -215,22 +220,7 @@ public class ZGHSearchEngine {
             String query = scanner.nextLine();
             Processor.getInstance().restartProcessor();
             Processor.getInstance().processQuery(query);
+            Processor.getInstance().printResults();
         }
     }
-
-
-    private static void printResults(ArrayList<String> documents, ArrayList<Integer> indexes) {
-        ArrayList<String> foundDocuments = new ArrayList<>();
-        if (indexes.size() == 0) {
-            System.out.println("nothing not found");
-            return;
-        }
-        for (int index : indexes) {
-            System.out.println(index + " : " + documents.get(index - 1));
-            foundDocuments.add(documents.get(index - 1));
-        }
-        System.out.println(indexes);
-    }
-
-
 }
