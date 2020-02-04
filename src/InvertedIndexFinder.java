@@ -96,13 +96,17 @@ public class InvertedIndexFinder {
         System.out.println("ZGH Search Engine\nSearch Results:");
         String[] stringsToFind = strToFind.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         HashMap<Integer, Result> results = new HashMap<>(); //HashMap to link doc indexes with results
-        ArrayList<Integer> foundDocIndexes = new ArrayList<>(invertedIndex.get(stringsToFind[0]).getNumOfWordInDocs().keySet());
-        for (int i = 1; i < stringsToFind.length; i++) {
-            foundDocIndexes.retainAll(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
-        }
+        ArrayList<Integer> foundDocIndexes = null;
         for (int i = 0; i < stringsToFind.length; i++) {
-            Result result = new Result()
+            if (foundDocIndexes == null && invertedIndex.get(stringsToFind[i]) != null)
+                foundDocIndexes = new ArrayList<>(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
+            else if (foundDocIndexes != null && invertedIndex.get(stringsToFind[i]) != null)
+                foundDocIndexes.retainAll(invertedIndex.get(stringsToFind[i]).getNumOfWordInDocs().keySet());
         }
+        System.out.println(foundDocIndexes);
+//        for (int i = 0; i < stringsToFind.length; i++) {
+//            Result result = new Result();
+//        }
 //        if (invertedIndex.get(stringsToFind[0]) != null) {
 //            InvertedIndexWord invertedIndexWord = invertedIndex.get(stringsToFind[0]);
 //            for (Map.Entry<Integer, Integer> entry : invertedIndexWord.getNumOfWordInDocs().entrySet()) {
