@@ -3,15 +3,15 @@ import java.util.HashMap;
 
 public class PreProcessor {
 
-    private HashMap<String, DetailsOfWord> invertedIndex;
+    private HashMap<String, DetailsOfWord> detailsOfWordHashMap;
 
     public PreProcessor(ArrayList<String> documents) {
-        invertedIndex = new HashMap<>();
+        detailsOfWordHashMap = new HashMap<>();
         preProcessDocs(documents);
     }
 
     public HashMap<String, DetailsOfWord> getDetailOfWords() {
-        return invertedIndex;
+        return detailsOfWordHashMap;
     }
 
     private void preProcessDocs(ArrayList<String> docs) {
@@ -26,17 +26,19 @@ public class PreProcessor {
         String[] words = doc.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
         int indexOfWord = 0;
         for (String word : words) {
-
-            if (invertedIndex.get(word) == null) {
-                DetailsOfWord indexes = new DetailsOfWord(word);
-                indexes.addWordToDocIndex(indexOfDoc, 1);
-                invertedIndex.put(word, indexes);
-                indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
+            if (detailsOfWordHashMap.get(word) == null) {
+                DetailsOfWord detailsOfWord = new DetailsOfWord(word);
+                setWordDetail(indexOfDoc, indexOfWord, detailsOfWord);
+                detailsOfWordHashMap.put(word, detailsOfWord);
             } else {
-                invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
-                invertedIndex.get(word).addIndexOfWordInDoc(indexOfDoc, indexOfWord);
+                setWordDetail(indexOfDoc, indexOfWord, detailsOfWordHashMap.get(word));
             }
             indexOfWord++;
         }
+    }
+
+    private void setWordDetail(int indexOfDoc, int indexOfWord, DetailsOfWord detailsOfWord) {
+        detailsOfWord.addWordToDocIndex(indexOfDoc, 1);
+        detailsOfWord.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
     }
 }

@@ -9,7 +9,7 @@ public class Processor {
      * @param results: to link doc indexes with results
      */
     private HashMap<Integer, Result> results;
-    private ArrayList<Result> sortedResults;
+        private ArrayList<Result> sortedResults;
     private PreProcessor preProcessor;
 
     public Processor(PreProcessor preProcessor) {
