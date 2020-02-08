@@ -4,18 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CSVFileReader {
-    private ArrayList<String> documents = new ArrayList<>();
-
-    public CSVFileReader(String fileName) {
-        readCSVFile(fileName);
-    }
-
-    public ArrayList<String> getDocuments() {
-        return documents;
-    }
 
 
-    private void readCSVFile(String fileName) {
+    public ArrayList<String> readCSVFile(String fileName) {
+        ArrayList<String> documents = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String doc;
             while ((doc = br.readLine()) != null) {
@@ -26,5 +18,6 @@ public class CSVFileReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return documents;
     }
 }

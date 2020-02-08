@@ -34,7 +34,7 @@ public class PreProcessor {
                 indexes.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
             } else {
                 invertedIndex.get(word).addWordToDocIndex(indexOfDoc, 1);
-                invertedIndex.get(word).addIndexOfWordInDoc(indexOfDoc,indexOfWord);
+                invertedIndex.get(word).addIndexOfWordInDoc(indexOfDoc, indexOfWord);
             }
             indexOfWord++;
         }

@@ -3,9 +3,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class Processor {
-    /** each document which has all the words in query has a result
+    /**
+     * each document which has all the words in query has a result
+     *
      * @param results: to link doc indexes with results
-      */
+     */
     private HashMap<Integer, Result> results;
     private ArrayList<Result> sortedResults;
     private PreProcessor preProcessor;
