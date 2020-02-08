@@ -5,7 +5,7 @@ public class SearchEngine {
     private DocumentHolder documentHolder;
     private Processor processor;
     private Scanner scanner;
-    private Printer printer;
+    private Printable printer;
 
     public SearchEngine(String FileName) {
         this.documentHolder = new DocumentHolder(new CSVFileReader().readCSVFile(FileName));
@@ -14,7 +14,7 @@ public class SearchEngine {
         this.scanner = new Scanner(System.in);
     }
 
-    public SearchEngine(DocumentHolder documentHolder, Processor processor, Scanner scanner, Printer printer) {
+    public SearchEngine(DocumentHolder documentHolder, Processor processor, Scanner scanner, Printable printer) {
         this.documentHolder = documentHolder;
         this.processor = processor;
         this.scanner = scanner;
