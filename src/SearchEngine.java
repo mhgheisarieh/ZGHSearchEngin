@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SearchEngine {
@@ -6,13 +5,6 @@ public class SearchEngine {
     private Processor processor;
     private Scanner scanner;
     private Printable printer;
-
-    public SearchEngine(String FileName) {
-        this.documentHolder = new DocumentHolder(new CSVFileReader().readCSVFile(FileName));
-        PreProcessor preProcessor = new PreProcessor(documentHolder.getDocuments());
-        this.processor = new Processor(preProcessor);
-        this.scanner = new Scanner(System.in);
-    }
 
     public SearchEngine(DocumentHolder documentHolder, Processor processor, Scanner scanner, Printable printer) {
         this.documentHolder = documentHolder;
