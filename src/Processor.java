@@ -9,30 +9,28 @@ public class Processor {
      * @param results: to link doc indexes with results
      */
     private HashMap<Integer, Result> results;
-    private ArrayList<Result> sortedResults;
     private PreProcessor preProcessor;
 
     public Processor(PreProcessor preProcessor) {
         this.results = new HashMap<>();
-        this.sortedResults = new ArrayList<>();
         this.preProcessor = preProcessor;
     }
 
     private void restartProcessor() {
         this.results = new HashMap<>();
-        this.sortedResults = new ArrayList<>();
 
     }
 
-    public void processQuery(String query) {
+    public ArrayList<Result> processQuery(String query) {
         restartProcessor();
         System.out.println("ZGH Search Engine\nSearch Results:");
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
         proximityFilter(wordsToFind);
-        sortedResults = new ArrayList<>(results.values());
-        sortedResults.sort(Comparator.comparingInt(Result::getScore).reversed());
+        ArrayList<Result> result = new ArrayList<>(results.values());
+        result.sort(Comparator.comparingInt(Result::getScore).reversed());
+        return result;
     }
 
     private void proximityFilter(String[] words) {
@@ -77,7 +75,5 @@ public class Processor {
         }
     }
 
-    public void printResults(ArrayList<String> documents) {
-        sortedResults.forEach(result -> System.out.println(result.getScore() + "     " + documents.get(result.getIndex())));
-    }
+
 }
