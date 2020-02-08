@@ -3,26 +3,18 @@ import java.util.HashMap;
 
 public class PreProcessor {
 
-    private static PreProcessor instance;
-
     private HashMap<String, DetailsOfWord> invertedIndex;
 
-    private PreProcessor() {
+    public PreProcessor(ArrayList<String> documents) {
         invertedIndex = new HashMap<>();
-    }
-
-    public static PreProcessor getInstance() {
-        if (instance == null) {
-            instance = new PreProcessor();
-        }
-        return instance;
+        preProcessDocs(documents);
     }
 
     public HashMap<String, DetailsOfWord> getDetailOfWords() {
         return invertedIndex;
     }
 
-    public void preProcessDocs(ArrayList<String> docs) {
+    private void preProcessDocs(ArrayList<String> docs) {
         int indexOfDoc = 0;
         for (String doc : docs) {
             preProcessDoc(doc, indexOfDoc);
