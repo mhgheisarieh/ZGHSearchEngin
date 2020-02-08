@@ -9,7 +9,7 @@ public class Processor {
      * @param results: to link doc indexes with results
      */
     private HashMap<Integer, Result> results;
-        private ArrayList<Result> sortedResults;
+    private ArrayList<Result> sortedResults;
     private PreProcessor preProcessor;
 
     public Processor(PreProcessor preProcessor) {
@@ -64,10 +64,11 @@ public class Processor {
     private void findAllMatches(String[] wordsToFind) {
         ArrayList<Integer> foundDocIndexes = null;
         for (String s : wordsToFind) {
-            if (foundDocIndexes == null && preProcessor.getDetailOfWords().get(s) != null)
-                foundDocIndexes = new ArrayList<>(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
-            else if (foundDocIndexes != null && preProcessor.getDetailOfWords().get(s) != null)
-                foundDocIndexes.retainAll(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
+            if (preProcessor.getDetailOfWords().get(s) != null) {
+                if (foundDocIndexes == null)
+                    foundDocIndexes = new ArrayList<>(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
+                else foundDocIndexes.retainAll(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
+            }
         }
         if (foundDocIndexes == null)
             return;
