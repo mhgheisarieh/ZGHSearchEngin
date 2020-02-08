@@ -12,6 +12,12 @@ public class SearchEngine {
         this.scanner = new Scanner(System.in);
     }
 
+    public SearchEngine(DocumentHolder documentHolder, Processor processor,Scanner scanner) {
+        this.documentHolder = documentHolder;
+        this.processor = processor;
+        this.scanner = scanner;
+    }
+
     public void query() {
         while (true) {
             String query = scanner.nextLine();
