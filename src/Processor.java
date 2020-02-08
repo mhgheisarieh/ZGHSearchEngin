@@ -3,8 +3,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class Processor {
-    // each doc which has all the words in query has a result
-    private HashMap<Integer, Result> results; //HashMap to link doc indexes with results
+    /** each document which has all the words in query has a result
+     * @param results: to link doc indexes with results
+      */
+    private HashMap<Integer, Result> results;
     private ArrayList<Result> sortedResults;
     private PreProcessor preProcessor;
 
@@ -14,13 +16,14 @@ public class Processor {
         this.preProcessor = preProcessor;
     }
 
-    public void restartProcessor() {
+    private void restartProcessor() {
         this.results = new HashMap<>();
         this.sortedResults = new ArrayList<>();
 
     }
 
     public void processQuery(String query) {
+        restartProcessor();
         System.out.println("ZGH Search Engine\nSearch Results:");
         String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
         findAllMatches(wordsToFind);

@@ -1,6 +1,13 @@
-//each founded document as a Result; index: index of document; score : score of document
+/**
+ * each founded document as a Result;
+ */
 
 public class Result {
+    /**
+     * @param index: index of document
+     * @param score : score of document
+     */
+
     private int index;
     private int score;
 

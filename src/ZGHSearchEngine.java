@@ -11,7 +11,6 @@ public class ZGHSearchEngine {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String query = scanner.nextLine();
-            processor.restartProcessor();
             processor.processQuery(query);
             processor.printResults(reader.getDocuments());
         }

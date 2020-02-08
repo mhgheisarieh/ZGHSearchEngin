@@ -19,7 +19,6 @@ public class CSVFileReader {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String doc;
             while ((doc = br.readLine()) != null) {
-                //Each line is a document
                 doc = doc.split("\",\"")[1];
                 doc = doc.substring(0, doc.length() - 1);
                 documents.add(doc);

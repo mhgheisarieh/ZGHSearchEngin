@@ -1,12 +1,21 @@
 import java.util.HashMap;
 
-//contains a word and indexes of documents which has the word as key and number of rematches in values
+/**
+ * contains a word and indexes of documents which has the word as key and number of rematches in values
+ */
 
 public class DetailsOfWord {
     private String word;
-    private HashMap<Integer, Integer> numOfWordInDocs; //A hash map to link indexes and numOfWords in doc
+
+    /**
+     * A hash map to link indexes and numOfWords in doc
+     */
+    private HashMap<Integer, Integer> numOfWordInDocs;
     //todo for multiple occurrences in one doc can add ArrayList of Integer to save indexes
-    private HashMap<Integer, Integer> indexInDoc; // key: index of doc ; value: index of word in doc
+    /**
+     * key: index of doc ; value: index of word in doc
+     */
+    private HashMap<Integer, Integer> indexInDoc;
 
     public DetailsOfWord(String word) {
         this.word = word;
