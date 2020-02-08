@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PreProcessor {
+class PreProcessor {
 
     private HashMap<String, DetailsOfWord> detailsOfWordHashMap;
 
-    public PreProcessor(ArrayList<String> documents) {
+    PreProcessor(ArrayList<String> documents) {
         detailsOfWordHashMap = new HashMap<>();
         preProcessDocs(documents);
     }
 
-    public HashMap<String, DetailsOfWord> getDetailOfWords() {
+    HashMap<String, DetailsOfWord> getDetailOfWords() {
         return detailsOfWordHashMap;
     }
 
@@ -38,7 +38,7 @@ public class PreProcessor {
     }
 
     private void setWordDetail(int indexOfDoc, int indexOfWord, DetailsOfWord detailsOfWord) {
-        detailsOfWord.addWordToDocIndex(indexOfDoc, 1);
+        detailsOfWord.addWordToDocIndex(indexOfDoc);
         detailsOfWord.addIndexOfWordInDoc(indexOfDoc, indexOfWord);
     }
 }

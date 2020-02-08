@@ -4,7 +4,7 @@ import java.util.HashMap;
  * contains a word and indexes of documents which has the word as key and number of rematches in values
  */
 
-public class DetailsOfWord {
+class DetailsOfWord {
     private String word;
 
     /**
@@ -17,25 +17,25 @@ public class DetailsOfWord {
      */
     private HashMap<Integer, Integer> indexInDoc;
 
-    public DetailsOfWord(String word) {
+    DetailsOfWord(String word) {
         this.word = word;
         this.numOfWordInDocs = new HashMap<>();
         this.indexInDoc = new HashMap<>();
     }
 
-    public void addWordToDocIndex(int indexOfDoc, int number) {
-        this.numOfWordInDocs.merge(indexOfDoc, number, Integer::sum);
+    void addWordToDocIndex(int indexOfDoc) {
+        this.numOfWordInDocs.merge(indexOfDoc, 1, Integer::sum);
     }
 
-    public void addIndexOfWordInDoc(int indexOfDoc, int indexOfWord) {
+    void addIndexOfWordInDoc(int indexOfDoc, int indexOfWord) {
         this.indexInDoc.put(indexOfDoc, indexOfWord);
     }
 
-    public HashMap<Integer, Integer> getNumOfWordInDocs() {
+    HashMap<Integer, Integer> getNumOfWordInDocs() {
         return numOfWordInDocs;
     }
 
-    public HashMap<Integer, Integer> getIndexInDoc() {
+    HashMap<Integer, Integer> getIndexInDoc() {
         return indexInDoc;
     }
 }

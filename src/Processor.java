@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class Processor {
+class Processor {
     /**
      * each document which has all the words in query has a result
      *
@@ -11,26 +11,29 @@ public class Processor {
     private HashMap<Integer, Result> results;
     private PreProcessor preProcessor;
 
-    public Processor(PreProcessor preProcessor) {
+    Processor(PreProcessor preProcessor) {
         this.results = new HashMap<>();
         this.preProcessor = preProcessor;
     }
 
     private void restartProcessor() {
         this.results = new HashMap<>();
-
     }
 
-    public ArrayList<Result> processQuery(String query) {
+    ArrayList<Result> processQuery(String query) {
         restartProcessor();
         System.out.println("ZGH Search Engine\nSearch Results:");
-        String[] wordsToFind = query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
+        String[] wordsToFind = extractQueryWords(query);
         findAllMatches(wordsToFind);
         setResultsScore(wordsToFind);
         proximityFilter(wordsToFind);
         ArrayList<Result> result = new ArrayList<>(results.values());
         result.sort(Comparator.comparingInt(Result::getScore).reversed());
         return result;
+    }
+
+    private String[] extractQueryWords(String query) {
+        return query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
     }
 
     private void proximityFilter(String[] words) {
@@ -46,7 +49,6 @@ public class Processor {
             }
         }
         toBeRemovedDocs.forEach(docIndex -> results.remove(docIndex));
-
     }
 
     private void setResultsScore(String[] wordsToFind) {
@@ -62,10 +64,11 @@ public class Processor {
     private void findAllMatches(String[] wordsToFind) {
         ArrayList<Integer> foundDocIndexes = null;
         for (String s : wordsToFind) {
+            ArrayList<Integer> numOfWordInDocs = new ArrayList<>(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
             if (preProcessor.getDetailOfWords().get(s) != null) {
                 if (foundDocIndexes == null)
-                    foundDocIndexes = new ArrayList<>(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
-                else foundDocIndexes.retainAll(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
+                    foundDocIndexes = new ArrayList<>(numOfWordInDocs);
+                else foundDocIndexes.retainAll(numOfWordInDocs);
             }
         }
         if (foundDocIndexes == null)

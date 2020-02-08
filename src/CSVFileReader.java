@@ -3,10 +3,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CSVFileReader {
+class CSVFileReader {
 
 
-    public ArrayList<String> readCSVFile(String fileName) {
+    ArrayList<String> readCSVFile(String fileName) {
         ArrayList<String> documents = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String doc;

@@ -2,7 +2,7 @@
  * each founded document as a Result;
  */
 
-public class Result {
+class Result {
     /**
      * @param index: index of document
      * @param score : score of document
@@ -11,20 +11,20 @@ public class Result {
     private int index;
     private int score;
 
-    public Result(int index, int score) {
+    Result(int index, int score) {
         this.index = index;
         this.score = score;
     }
 
-    public void changeScore(int change) {
+    void changeScore(int change) {
         this.score += change;
     }
 
-    public int getIndex() {
+    int getIndex() {
         return index;
     }
 
-    public int getScore() {
+    int getScore() {
         return score;
     }
 }

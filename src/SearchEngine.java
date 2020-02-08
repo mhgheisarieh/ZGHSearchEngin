@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-public class SearchEngine {
+class SearchEngine {
     private DocumentHolder documentHolder;
     private Processor processor;
     private Scanner scanner;
     private Printable printer;
 
-    public SearchEngine(DocumentHolder documentHolder, Processor processor, Scanner scanner, Printable printer) {
+    SearchEngine(DocumentHolder documentHolder, Processor processor, Scanner scanner, Printable printer) {
         this.documentHolder = documentHolder;
         this.processor = processor;
         this.scanner = scanner;
         this.printer = printer;
     }
 
-    public void query() {
+    void query() {
         while (true) {
             String query = scanner.nextLine();
             this.printer.printResults(documentHolder.getDocuments(), processor.processQuery(query));

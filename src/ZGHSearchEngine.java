@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ZGHSearchEngine {
 
-    public static final String FILE_NAME = "English.csv";
+    private static final String FILE_NAME = "English.csv";
 
     public static void main(String[] args) {
         DocumentHolder documentHolder = new DocumentHolder(new CSVFileReader().readCSVFile(FILE_NAME));
