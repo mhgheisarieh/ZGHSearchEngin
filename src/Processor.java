@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Objects;
 
 class Processor {
     /**
@@ -61,7 +62,12 @@ class Processor {
     private void findAllMatches(String[] wordsToFind, HashMap<Integer, Result> results) {
         ArrayList<Integer> foundDocIndexes = null;
         for (String word : wordsToFind) {
-            foundDocIndexes = findDocIndexes(foundDocIndexes, word);
+            if (getFoundDocsIndex(word) != null) {
+                if (foundDocIndexes == null)
+                    foundDocIndexes = new ArrayList<>(Objects.requireNonNull(getFoundDocsIndex(word)));
+                else
+                    foundDocIndexes.retainAll(getFoundDocsIndex(word));
+            }
         }
         if (foundDocIndexes == null)
             return;
@@ -70,14 +76,11 @@ class Processor {
         }
     }
 
-    private ArrayList<Integer> findDocIndexes(ArrayList<Integer> foundDocIndexes, String word) {
-        ArrayList<Integer> docIndexes = new ArrayList<>(detailsOfWordHashMap.get(word).getNumOfWordInDocs().keySet());
-        if (detailsOfWordHashMap.get(word) != null) {
-            if (foundDocIndexes == null)
-                foundDocIndexes = new ArrayList<>(docIndexes);
-            else foundDocIndexes.retainAll(docIndexes);
-        }
-        return foundDocIndexes;
-    }
 
+    private ArrayList<Integer> getFoundDocsIndex(String word) {
+        if (detailsOfWordHashMap.get(word) != null)
+            return new ArrayList<>(detailsOfWordHashMap.get(word).getNumOfWordInDocs().keySet());
+        else
+            return null;
+    }
 }
