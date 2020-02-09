@@ -5,20 +5,13 @@ import java.util.HashMap;
 class Processor {
     /**
      * each document which has all the words in query has a result
-     *
-     * @param results: to link doc indexes with results
      */
-//    private HashMap<Integer, Result> results;
     private PreProcessor preProcessor;
 
     Processor(PreProcessor preProcessor) {
         System.out.println("ZGH Search Engine\nSearch Results:");
         this.preProcessor = preProcessor;
     }
-
-//    private void restartProcessor() {
-//        this.results = new HashMap<>();
-//    }
 
     ArrayList<Result> processQuery(String query) {
         HashMap<Integer, Result> results = new HashMap<>();
@@ -85,6 +78,5 @@ class Processor {
         }
         return foundDocIndexes;
     }
-
 
 }
