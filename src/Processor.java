@@ -8,25 +8,28 @@ class Processor {
      *
      * @param results: to link doc indexes with results
      */
-    private HashMap<Integer, Result> results;
+//    private HashMap<Integer, Result> results;
     private PreProcessor preProcessor;
 
     Processor(PreProcessor preProcessor) {
-        this.results = new HashMap<>();
+        System.out.println("ZGH Search Engine\nSearch Results:");
         this.preProcessor = preProcessor;
     }
 
-    private void restartProcessor() {
-        this.results = new HashMap<>();
-    }
+//    private void restartProcessor() {
+//        this.results = new HashMap<>();
+//    }
 
     ArrayList<Result> processQuery(String query) {
-        restartProcessor();
-        System.out.println("ZGH Search Engine\nSearch Results:");
+        HashMap<Integer, Result> results = new HashMap<>();
         String[] wordsToFind = extractQueryWords(query);
-        findAllMatches(wordsToFind);
-        setResultsScore(wordsToFind);
-        proximityFilter(wordsToFind);
+        findAllMatches(wordsToFind, results);
+        setResultsScore(wordsToFind, results);
+        proximityFilter(wordsToFind, results);
+        return getSortedResult(results);
+    }
+
+    private ArrayList<Result> getSortedResult(HashMap<Integer, Result> results) {
         ArrayList<Result> result = new ArrayList<>(results.values());
         result.sort(Comparator.comparingInt(Result::getScore).reversed());
         return result;
@@ -36,7 +39,7 @@ class Processor {
         return query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
     }
 
-    private void proximityFilter(String[] words) {
+    private void proximityFilter(String[] words, HashMap<Integer, Result> results) {
         ArrayList<Integer> toBeRemovedDocs = new ArrayList<>();
         int maxDistance = 5;
         for (Integer docIndex : results.keySet()) {
@@ -48,10 +51,10 @@ class Processor {
                 }
             }
         }
-        toBeRemovedDocs.forEach(docIndex -> results.remove(docIndex));
+        toBeRemovedDocs.forEach(results::remove);
     }
 
-    private void setResultsScore(String[] wordsToFind) {
+    private void setResultsScore(String[] wordsToFind, HashMap<Integer, Result> results) {
         for (String word : wordsToFind) {
             for (Integer docIndex : results.keySet()) {
                 preProcessor.getDetailOfWords().get(word);
@@ -61,21 +64,26 @@ class Processor {
         }
     }
 
-    private void findAllMatches(String[] wordsToFind) {
+    private void findAllMatches(String[] wordsToFind, HashMap<Integer, Result> results) {
         ArrayList<Integer> foundDocIndexes = null;
-        for (String s : wordsToFind) {
-            ArrayList<Integer> numOfWordInDocs = new ArrayList<>(preProcessor.getDetailOfWords().get(s).getNumOfWordInDocs().keySet());
-            if (preProcessor.getDetailOfWords().get(s) != null) {
-                if (foundDocIndexes == null)
-                    foundDocIndexes = new ArrayList<>(numOfWordInDocs);
-                else foundDocIndexes.retainAll(numOfWordInDocs);
-            }
+        for (String word : wordsToFind) {
+            foundDocIndexes = findDocIndexes(foundDocIndexes, word);
         }
         if (foundDocIndexes == null)
             return;
         for (Integer foundDocIndex : foundDocIndexes) {
             results.put(foundDocIndex, new Result(foundDocIndex, 0));
         }
+    }
+
+    private ArrayList<Integer> findDocIndexes(ArrayList<Integer> foundDocIndexes, String word) {
+        ArrayList<Integer> numOfWordInDocs = new ArrayList<>(preProcessor.getDetailOfWords().get(word).getNumOfWordInDocs().keySet());
+        if (preProcessor.getDetailOfWords().get(word) != null) {
+            if (foundDocIndexes == null)
+                foundDocIndexes = new ArrayList<>(numOfWordInDocs);
+            else foundDocIndexes.retainAll(numOfWordInDocs);
+        }
+        return foundDocIndexes;
     }
 
 
