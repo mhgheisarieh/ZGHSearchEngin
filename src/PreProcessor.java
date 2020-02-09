@@ -14,7 +14,7 @@ class PreProcessor {
     }
 
     private static void preProcessDoc(String doc, int indexOfDoc, HashMap<String, DetailsOfWord> detailsOfWordHashMap) {
-        String[] words = doc.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
+        String[] words = Splitter.split(doc);
         int indexOfWord = 0;
         for (String word : words) {
             if (detailsOfWordHashMap.get(word) == null) {

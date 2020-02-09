@@ -37,7 +37,7 @@ class Processor {
     }
 
     private String[] extractQueryWords(String query) {
-        return query.split("[\\s.,()/\"#;'\\\\\\-:$]+");
+        return Splitter.split(query);
     }
 
     private void proximityFilter(String[] words, HashMap<Integer, Result> results) {
