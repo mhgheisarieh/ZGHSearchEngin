@@ -7,24 +7,24 @@ class Processor {
      * each document which has all the words in query has a result
      */
 
-    private HashMap<String, DetailsOfWord> detailsOfWordHashMap;
 
-    Processor(HashMap<String, DetailsOfWord> detailsOfWordHashMap) {
+    public static int PROXIMITY_MAX_DISTANCE = 5;
+
+    Processor() {
         System.out.println("ZGH Search Engine\nSearch Results:");
-        this.detailsOfWordHashMap = detailsOfWordHashMap;
     }
 
     ArrayList<Result> processQuery(String query) {
         HashMap<Integer, Result> results = new HashMap<>();
         String[] wordsToFind = extractQueryWords(query);
-        fillResults(results, wordsToFind);
+        fillResults(wordsToFind, results);
         setResultsScore(wordsToFind, results);
         proximityFilter(wordsToFind, results);
         return getSortedResult(results);
 
     }
 
-    private void fillResults(HashMap<Integer, Result> results, String[] wordsToFind) {
+    private void fillResults(String[] wordsToFind, HashMap<Integer, Result> results) {
         ArrayList<Integer> foundDocs = findAllMatches(wordsToFind);
         if (foundDocs != null)
             foundDocs.forEach(docIndex -> results.put(docIndex, new Result(docIndex, 0)));
@@ -42,12 +42,12 @@ class Processor {
 
     private void proximityFilter(String[] words, HashMap<Integer, Result> results) {
         ArrayList<Integer> toBeRemovedDocs = new ArrayList<>();
-        int maxDistance = 5;
+        HashMap<String,DetailsOfWord> details = PreProcessedData.getInstance().getDetailsOfWordHashMap();
         for (Integer docIndex : results.keySet()) {
             for (int i = 0; i < words.length - 1; i++) {
-                int firstIndex = detailsOfWordHashMap.get(words[i]).getIndexInDoc().get(docIndex);
-                int secondIndex = detailsOfWordHashMap.get(words[i + 1]).getIndexInDoc().get(docIndex);
-                if (Math.abs(firstIndex - secondIndex) > maxDistance) {
+                int firstIndex = details.get(words[i]).getIndexInDoc().get(docIndex);
+                int secondIndex = details.get(words[i + 1]).getIndexInDoc().get(docIndex);
+                if (Math.abs(firstIndex - secondIndex) > PROXIMITY_MAX_DISTANCE) {
                     toBeRemovedDocs.add(docIndex);
                 }
             }
@@ -58,7 +58,7 @@ class Processor {
     private void setResultsScore(String[] wordsToFind, HashMap<Integer, Result> results) {
         for (String word : wordsToFind) {
             for (Integer docIndex : results.keySet()) {
-                int score = detailsOfWordHashMap.get(word).getNumOfWordInDocs().get(docIndex);
+                int score = PreProcessedData.getInstance().getDetailsOfWordHashMap().get(word).getNumOfWordInDocs().get(docIndex);
                 results.get(docIndex).changeScore(score);
             }
         }
@@ -80,7 +80,7 @@ class Processor {
 
 
     private ArrayList<Integer> getFoundDocsIndexForWord(String word) {
-        DetailsOfWord detailsOfWord = detailsOfWordHashMap.get(word);
+        DetailsOfWord detailsOfWord = PreProcessedData.getInstance().getDetailsOfWordHashMap().get(word);
         if (detailsOfWord != null)
             return new ArrayList<>(detailsOfWord.getNumOfWordInDocs().keySet());
         else
