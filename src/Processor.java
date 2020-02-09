@@ -3,34 +3,30 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 class Processor {
-    /**
-     * each document which has all the words in query has a result
-     */
-
 
     public static int PROXIMITY_MAX_DISTANCE = 5;
+    private HashMap<Integer, Result> results = new HashMap<>();
 
     Processor() {
         System.out.println("ZGH Search Engine\nSearch Results:");
     }
 
     ArrayList<Result> processQuery(String query) {
-        HashMap<Integer, Result> results = new HashMap<>();
         String[] wordsToFind = extractQueryWords(query);
-        fillResults(wordsToFind, results);
-        setResultsScore(wordsToFind, results);
-        proximityFilter(wordsToFind, results);
-        return getSortedResult(results);
+        fillResults(wordsToFind);
+        setResultsScore(wordsToFind);
+        proximityFilter(wordsToFind);
+        return getSortedResult();
 
     }
 
-    private void fillResults(String[] wordsToFind, HashMap<Integer, Result> results) {
+    private void fillResults(String[] wordsToFind) {
         ArrayList<Integer> foundDocs = findAllMatches(wordsToFind);
         if (foundDocs != null)
             foundDocs.forEach(docIndex -> results.put(docIndex, new Result(docIndex, 0)));
     }
 
-    private ArrayList<Result> getSortedResult(HashMap<Integer, Result> results) {
+    private ArrayList<Result> getSortedResult() {
         ArrayList<Result> result = new ArrayList<>(results.values());
         result.sort(Comparator.comparingInt(Result::getScore).reversed());
         return result;
@@ -40,9 +36,9 @@ class Processor {
         return Splitter.split(query);
     }
 
-    private void proximityFilter(String[] words, HashMap<Integer, Result> results) {
+    private void proximityFilter(String[] words) {
         ArrayList<Integer> toBeRemovedDocs = new ArrayList<>();
-        HashMap<String,DetailsOfWord> details = PreProcessedData.getInstance().getDetailsOfWordHashMap();
+        HashMap<String, DetailsOfWord> details = PreProcessedData.getInstance().getDetailsOfWordHashMap();
         for (Integer docIndex : results.keySet()) {
             for (int i = 0; i < words.length - 1; i++) {
                 int firstIndex = details.get(words[i]).getIndexInDoc().get(docIndex);
@@ -55,7 +51,7 @@ class Processor {
         toBeRemovedDocs.forEach(results::remove);
     }
 
-    private void setResultsScore(String[] wordsToFind, HashMap<Integer, Result> results) {
+    private void setResultsScore(String[] wordsToFind) {
         for (String word : wordsToFind) {
             for (Integer docIndex : results.keySet()) {
                 int score = PreProcessedData.getInstance().getDetailsOfWordHashMap().get(word).getNumOfWordInDocs().get(docIndex);
