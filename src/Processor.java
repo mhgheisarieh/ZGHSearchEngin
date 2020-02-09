@@ -18,10 +18,11 @@ class Processor {
     ArrayList<Result> processQuery(String query) {
         HashMap<Integer, Result> results = new HashMap<>();
         String[] wordsToFind = extractQueryWords(query);
-        findAllMatches(wordsToFind, results);
+        findAllMatches(wordsToFind).forEach(docIndex -> results.put(docIndex, new Result(docIndex, 0)));
         setResultsScore(wordsToFind, results);
         proximityFilter(wordsToFind, results);
         return getSortedResult(results);
+
     }
 
     private ArrayList<Result> getSortedResult(HashMap<Integer, Result> results) {
@@ -59,7 +60,7 @@ class Processor {
         }
     }
 
-    private void findAllMatches(String[] wordsToFind, HashMap<Integer, Result> results) {
+    private ArrayList<Integer> findAllMatches(String[] wordsToFind) {
         ArrayList<Integer> foundDocIndexes = null;
         for (String word : wordsToFind) {
             if (getFoundDocsIndex(word) != null) {
@@ -69,11 +70,7 @@ class Processor {
                     foundDocIndexes.retainAll(getFoundDocsIndex(word));
             }
         }
-        if (foundDocIndexes == null)
-            return;
-        for (Integer foundDocIndex : foundDocIndexes) {
-            results.put(foundDocIndex, new Result(foundDocIndex, 0));
-        }
+        return foundDocIndexes;
     }
 
 
