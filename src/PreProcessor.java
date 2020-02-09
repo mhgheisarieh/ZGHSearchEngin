@@ -2,27 +2,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class PreProcessor {
+    private final static PreProcessor PRE_PROCESSOR = new PreProcessor();
 
-    private HashMap<String, DetailsOfWord> detailsOfWordHashMap;
-
-    PreProcessor(ArrayList<String> documents) {
-        detailsOfWordHashMap = new HashMap<>();
-        preProcessDocs(documents);
+    public static PreProcessor getInstance() {
+        return PRE_PROCESSOR;
     }
 
-    HashMap<String, DetailsOfWord> getDetailOfWords() {
+
+    public HashMap<String, DetailsOfWord> preProcess(ArrayList<String> docs) {
+        HashMap<String, DetailsOfWord> detailsOfWordHashMap = new HashMap<>();
+        int indexOfDoc = 0;
+        for (String doc : docs) {
+            preProcessDoc(doc, indexOfDoc, detailsOfWordHashMap);
+            indexOfDoc++;
+        }
         return detailsOfWordHashMap;
     }
 
-    private void preProcessDocs(ArrayList<String> docs) {
-        int indexOfDoc = 0;
-        for (String doc : docs) {
-            preProcessDoc(doc, indexOfDoc);
-            indexOfDoc++;
-        }
-    }
-
-    private void preProcessDoc(String doc, int indexOfDoc) {
+    private void preProcessDoc(String doc, int indexOfDoc, HashMap<String, DetailsOfWord> detailsOfWordHashMap) {
         String[] words = doc.split("[\\s.,()/\"#;'\\\\\\-:$&]+");
         int indexOfWord = 0;
         for (String word : words) {

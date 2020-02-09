@@ -6,11 +6,12 @@ class Processor {
     /**
      * each document which has all the words in query has a result
      */
-    private PreProcessor preProcessor;
 
-    Processor(PreProcessor preProcessor) {
+    private HashMap<String, DetailsOfWord> detailsOfWordHashMap;
+
+    Processor(HashMap<String, DetailsOfWord> detailsOfWordHashMap) {
         System.out.println("ZGH Search Engine\nSearch Results:");
-        this.preProcessor = preProcessor;
+        this.detailsOfWordHashMap = detailsOfWordHashMap;
     }
 
     ArrayList<Result> processQuery(String query) {
@@ -37,8 +38,8 @@ class Processor {
         int maxDistance = 5;
         for (Integer docIndex : results.keySet()) {
             for (int i = 0; i < words.length - 1; i++) {
-                int firstIndex = preProcessor.getDetailOfWords().get(words[i]).getIndexInDoc().get(docIndex);
-                int secondIndex = preProcessor.getDetailOfWords().get(words[i + 1]).getIndexInDoc().get(docIndex);
+                int firstIndex = detailsOfWordHashMap.get(words[i]).getIndexInDoc().get(docIndex);
+                int secondIndex = detailsOfWordHashMap.get(words[i + 1]).getIndexInDoc().get(docIndex);
                 if (Math.abs(firstIndex - secondIndex) > maxDistance) {
                     toBeRemovedDocs.add(docIndex);
                 }
@@ -50,8 +51,8 @@ class Processor {
     private void setResultsScore(String[] wordsToFind, HashMap<Integer, Result> results) {
         for (String word : wordsToFind) {
             for (Integer docIndex : results.keySet()) {
-                preProcessor.getDetailOfWords().get(word);
-                int score = preProcessor.getDetailOfWords().get(word).getNumOfWordInDocs().get(docIndex);
+                detailsOfWordHashMap.get(word);
+                int score = detailsOfWordHashMap.get(word).getNumOfWordInDocs().get(docIndex);
                 results.get(docIndex).changeScore(score);
             }
         }
@@ -70,11 +71,11 @@ class Processor {
     }
 
     private ArrayList<Integer> findDocIndexes(ArrayList<Integer> foundDocIndexes, String word) {
-        ArrayList<Integer> numOfWordInDocs = new ArrayList<>(preProcessor.getDetailOfWords().get(word).getNumOfWordInDocs().keySet());
-        if (preProcessor.getDetailOfWords().get(word) != null) {
+        ArrayList<Integer> docIndexes = new ArrayList<>(detailsOfWordHashMap.get(word).getNumOfWordInDocs().keySet());
+        if (detailsOfWordHashMap.get(word) != null) {
             if (foundDocIndexes == null)
-                foundDocIndexes = new ArrayList<>(numOfWordInDocs);
-            else foundDocIndexes.retainAll(numOfWordInDocs);
+                foundDocIndexes = new ArrayList<>(docIndexes);
+            else foundDocIndexes.retainAll(docIndexes);
         }
         return foundDocIndexes;
     }
