@@ -18,11 +18,17 @@ class Processor {
     ArrayList<Result> processQuery(String query) {
         HashMap<Integer, Result> results = new HashMap<>();
         String[] wordsToFind = extractQueryWords(query);
-        findAllMatches(wordsToFind).forEach(docIndex -> results.put(docIndex, new Result(docIndex, 0)));
+        fillResults(results, wordsToFind);
         setResultsScore(wordsToFind, results);
         proximityFilter(wordsToFind, results);
         return getSortedResult(results);
 
+    }
+
+    private void fillResults(HashMap<Integer, Result> results, String[] wordsToFind) {
+        ArrayList<Integer> foundDocs = findAllMatches(wordsToFind);
+        if (foundDocs != null)
+            foundDocs.forEach(docIndex -> results.put(docIndex, new Result(docIndex, 0)));
     }
 
     private ArrayList<Result> getSortedResult(HashMap<Integer, Result> results) {
