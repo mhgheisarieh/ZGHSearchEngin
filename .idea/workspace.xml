@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4258a686-02a2-4824-a369-e26e0bd4afe8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CSVFileReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DetailsOfWord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PreProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Processor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ZGHSearchEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ZGHSearchEngine.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="First Project" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1XHr3KJjlxJXdzqHuj1iWsn5j4O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last.edited.regexp" value=".\';;;;; " />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="ZGHSearchEngine" />
+      <module name="First Project" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4258a686-02a2-4824-a369-e26e0bd4afe8" name="Default Changelist" comment="" />
+      <created>1580713661383</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580713661383</updated>
+      <workItem from="1580713666489" duration="32850000" />
+    </task>
+    <task id="LOCAL-00001" summary="second">
+      <created>1580799691635</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580799691635</updated>
+    </task>
+    <task id="LOCAL-00002" summary="second">
+      <created>1580802323480</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580802323480</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactoring">
+      <created>1580804725350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580804725350</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactoring">
+      <created>1580806524961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580806524961</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add Restart Function">
+      <created>1580815281680</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580815281680</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add sort of results">
+      <created>1580817208756</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1580817208756</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix bug of scores">
+      <created>1580817360869</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580817360869</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="second" />
+    <MESSAGE value="Refactoring" />
+    <MESSAGE value="Add Restart Function" />
+    <MESSAGE value="Add sort of results" />
+    <MESSAGE value="fix bug of scores" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug of scores" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="77" width="814" height="728" key="#Intentions" timestamp="1580733207263">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="77" width="814" height="728" key="#Intentions/0.0.1536.834@0.0.1536.834" timestamp="1580733207263" />
+    <state x="574" y="134" key="#com.intellij.ide.util.MemberChooser" timestamp="1580804046406">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="134" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1580804046406" />
+    <state x="241" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580802397464">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="241" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1580802397464" />
+    <state x="380" y="13" key="CommitChangelistDialog2" timestamp="1580817360267">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="380" y="13" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1580817360267" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1580817579093">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580817579093" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1580817579093">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1580817579093" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1580817579093">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1580817579093" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1580817579093">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1580817579093" />
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1580799852892">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.center" timestamp="1580799852892">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.left" timestamp="1580799852892">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
+    <state width="1493" height="265" key="GridCell.Tab.1.right" timestamp="1580799852892">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1580799852892" />
+    <state x="147" y="72" key="MergeDialog" timestamp="1580806511348">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="147" y="72" key="MergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1580806511348" />
+    <state x="481" y="134" key="MultipleFileMergeDialog" timestamp="1580806511358">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="481" y="134" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1580806511358" />
+    <state x="584" y="352" key="ReplaceDuplicatesPrompt" timestamp="1580726054370">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="584" y="352" key="ReplaceDuplicatesPrompt/0.0.1536.834@0.0.1536.834" timestamp="1580726054370" />
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1580817433847">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1580817433847" />
+    <state x="465" y="243" key="com.intellij.ide.util.TipDialog" timestamp="1580713666550">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="465" y="243" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1580713666550" />
+    <state x="511" y="78" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1580724017978">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="511" y="78" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.834@0.0.1536.834" timestamp="1580724017978" />
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580817523228">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="578" y="335" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1580817523228" />
+    <state x="540" y="121" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580733197378">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="540" y="121" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.834@0.0.1536.834" timestamp="1580733197378" />
+    <state x="499" y="174" width="538" height="495" key="extract.method.dialog" timestamp="1580726051918">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="174" width="538" height="495" key="extract.method.dialog/0.0.1536.834@0.0.1536.834" timestamp="1580726051918" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1580815025154">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1580815025154" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ZGHSearchEngine.java</url>
+          <line>156</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
